@@ -55,10 +55,7 @@ export const useStore = defineStore(`store`, () => {
   const output = ref(``)
 
   // 文本字体
-  const theme = useStorage<keyof typeof themeMap>(
-    addPrefix(`theme`),
-    themeOptions[0].value,
-  )
+  const theme = useStorage(addPrefix(`theme`), `default`)
   // 文本字体
   const fontFamily = useStorage(`fonts`, fontFamilyOptions[0].value)
   // 文本大小
@@ -173,7 +170,7 @@ export const useStore = defineStore(`store`, () => {
   // 自定义 CSS 内容
   const cssContent = useStorage(`__css_content`, DEFAULT_CSS_CONTENT)
   const cssContentConfig = useStorage(addPrefix(`css_content_config`), {
-    active: `方案1`,
+    active: `微信风格`,
     tabs: [
       {
         title: `方案1`,
@@ -181,11 +178,157 @@ export const useStore = defineStore(`store`, () => {
         // 兼容之前的方案
         content: cssContent.value || DEFAULT_CSS_CONTENT,
       },
+      {
+        title: `微信风格`,
+        name: `微信风格`,
+        content: `/**
+ * 微信公众号风格自定义CSS
+ */
+/* 顶层容器样式 */
+container {
+  background-color: white;
+}
+
+/* 一级标题样式 */
+h1 {
+  font-size: 1.4em;
+  text-align: center;
+  margin: 1.5em 0 1em;
+  font-weight: bold;
+  color: #000;
+}
+
+/* 二级标题样式 */
+h2 {
+  font-size: 1.2em;
+  margin: 1.5em 0 1em;
+  font-weight: bold;
+  color: #000;
+  text-align: left;
+}
+
+/* 三级标题样式 */
+h3 {
+  font-size: 1.1em;
+  margin: 1.2em 0 0.6em;
+  font-weight: bold;
+  color: #000;
+}
+
+/* 引用样式 - 灰色背景块 */
+blockquote {
+  background-color: #f7f7f7;
+  padding: 1em;
+  border-radius: 0;
+  border-left: none;
+  margin: 1em 0;
+}
+
+/* 引用段落样式 */
+blockquote_p {
+  color: #666;
+  font-size: 0.95em;
+  margin: 0.5em 0;
+}
+
+/* 段落样式 */
+p {
+  margin: 1em 0;
+  line-height: 1.8;
+  color: #333;
+  text-align: justify;
+}
+
+/* 图片样式 */
+image {
+  display: block;
+  max-width: 100%;
+  margin: 1em auto;
+  border-radius: 0;
+}
+
+/* 有序列表样式 */
+ol {
+  counter-reset: list;
+  list-style-type: none;
+  padding-left: 0;
+  margin: 1em 0;
+}
+
+/* 列表项样式 - 数字序号 */
+listitem {
+  position: relative;
+  margin: 0.8em 0;
+  padding-left: 2em;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* 自定义序号样式 */
+ol > li:before {
+  counter-increment: list;
+  content: counter(list);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.5em;
+  height: 1.5em;
+  color: white;
+  font-size: 0.8em;
+  background-color: #222;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 1.5em;
+}
+
+/* 链接样式 */
+link {
+  color: #576b95;
+  text-decoration: none;
+}
+
+/* 微信链接样式 */
+wx_link {
+  color: #576b95;
+  text-decoration: none;
+}
+
+/* 代码块样式 */
+code_pre {
+  background-color: #f7f7f7;
+  border-radius: 0;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+/* 行内代码样式 */
+codespan {
+  background-color: #f7f7f7;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+/* 粗体样式 */
+strong {
+  font-weight: bold;
+}
+
+/* 分隔线样式 */
+hr {
+  height: 1px;
+  border: none;
+  background: #e5e5e5;
+  margin: 1.5em 0;
+}`,
+      },
     ],
   })
   onMounted(() => {
     // 清空过往历史记录
     cssContent.value = ``
+    // 设置默认主题为wechat
+    theme.value = 'wechat'
   })
   const getCurrentTab = () =>
     cssContentConfig.value.tabs.find((tab) => {

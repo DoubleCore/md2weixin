@@ -578,10 +578,205 @@ const simpleTheme = toMerged(defaultTheme, {
   },
 })
 
+const wechatTheme = toMerged(defaultTheme, {
+  base: {
+    '--md-primary-color': `#07C160`,
+    'text-align': 'justify',
+    'line-height': '1.8',
+  },
+  block: {
+    container: {},
+    // 一级标题
+    h1: {
+      'display': 'block',
+      'padding': '0',
+      'border-bottom': 'none',
+      'margin': '1.5em 0 1em',
+      'color': '#000',
+      'font-size': '1.4em',
+      'font-weight': 'bold',
+      'text-align': 'center',
+    },
+
+    // 二级标题
+    h2: {
+      'display': 'block',
+      'padding': '0',
+      'margin': '1.5em 0 1em',
+      'color': '#000',
+      'background': 'transparent',
+      'font-size': '1.2em',
+      'font-weight': 'bold',
+      'text-align': 'left',
+    },
+
+    // 三级标题
+    h3: {
+      'padding-left': '0',
+      'border-left': 'none',
+      'margin': '1.2em 0 0.6em',
+      'color': '#000',
+      'font-size': '1.1em',
+      'font-weight': 'bold',
+      'line-height': '1.4',
+    },
+
+    // 四级标题
+    h4: {
+      'margin': '1em 0 0.6em',
+      'color': '#000',
+      'font-size': '1em',
+      'font-weight': 'bold',
+    },
+
+    // 段落
+    p: {
+      'margin': '1em 0',
+      'letter-spacing': '0.05em',
+      'color': '#333',
+      'text-align': 'justify',
+    },
+
+    // 引用
+    blockquote: {
+      'font-style': 'normal',
+      'padding': '1em',
+      'margin-bottom': '1em',
+      'background': '#f7f7f7',
+      'color': '#666',
+      'border-left': 'none',
+      'border-radius': '0',
+    },
+
+    // 引用内容
+    blockquote_p: {
+      'display': 'block',
+      'font-size': '0.95em',
+      'letter-spacing': '0.05em',
+      'color': '#666',
+      'margin': '0.5em 0',
+    },
+
+    // 代码块
+    code_pre: {
+      'font-size': '85%',
+      'overflow-x': 'auto',
+      'border-radius': '0',
+      'padding': '1em',
+      'line-height': '1.5',
+      'margin': '1em 0',
+      'background': '#f7f7f7',
+    },
+
+    // 行内代码
+    code: {
+      'margin': 0,
+      'white-space': 'nowrap',
+      'font-size': '85%',
+      'background': '#f7f7f7',
+      'padding': '0.2em 0.4em',
+      'border-radius': '3px',
+      'font-family': 'Menlo, Operator Mono, Consolas, Monaco, monospace',
+    },
+
+    // 图片
+    image: {
+      'display': 'block',
+      'max-width': '100%',
+      'margin': '1em auto',
+      'border-radius': '0',
+    },
+
+    // 有序列表
+    ol: {
+      'padding-left': '1.5em',
+      'margin': '1em 0',
+      'color': '#333',
+    },
+
+    // 无序列表
+    ul: {
+      'list-style': 'disc',
+      'padding-left': '1.5em',
+      'margin': '1em 0',
+      'color': '#333',
+    },
+
+    hr: {
+      'height': '1px',
+      'border': 'none',
+      'margin': '1.5em 0',
+      'background': '#e5e5e5',
+    },
+
+    figure: {
+      'margin': '1em 0',
+      'text-align': 'center',
+      'color': '#666',
+    },
+  },
+  inline: {
+    listitem: {
+      'margin': '0.8em 0',
+      'line-height': '1.6',
+    },
+
+    codespan: {
+      'background': '#f7f7f7',
+      'padding': '0.2em 0.4em',
+      'border-radius': '3px',
+      'font-size': '85%',
+    },
+
+    em: {
+      'font-style': 'italic',
+    },
+
+    strong: {
+      'font-weight': 'bold',
+    },
+
+    link: {
+      'color': '#576b95',
+      'text-decoration': 'none',
+    },
+
+    wx_link: {
+      'color': '#576b95',
+      'text-decoration': 'none',
+    },
+
+    table: {
+      'border-collapse': 'collapse',
+      'border-spacing': '0',
+      'margin': '1em 0',
+      'color': '#333',
+      'width': '100%',
+    },
+
+    thead: {
+      'background': '#f7f7f7',
+    },
+
+    td: {
+      'padding': '0.6em 1em',
+      'border': '1px solid #e5e5e5',
+    },
+
+    figcaption: {
+      'font-size': '0.9em',
+      'color': '#666',
+      'text-align': 'center',
+      'margin-top': '0.5em',
+    },
+  },
+})
+
 export const themeMap = {
   default: defaultTheme,
   grace: graceTheme,
   simple: simpleTheme,
+  wechat: wechatTheme,
 }
 
 export const themeOptions: IConfigOption<keyof typeof themeMap>[] = [
@@ -599,5 +794,10 @@ export const themeOptions: IConfigOption<keyof typeof themeMap>[] = [
     label: `简洁`,
     value: `simple`,
     desc: `@okooo5km`,
+  },
+  {
+    label: `微信风格`,
+    value: `wechat`,
+    desc: `微信公众号样式`,
   },
 ]
